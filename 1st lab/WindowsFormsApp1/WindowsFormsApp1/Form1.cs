@@ -167,35 +167,35 @@ namespace WindowsFormsApp1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
-               
                 int pr1 = Convert.ToInt32(textBox1.Text);
                 int pr2 = Convert.ToInt32(textBox2.Text);
-                int or = ~(pr1 + pr2);
-                textBox3.Text = Convert.ToString(or, 2);
-            }
-            if (radioButton2.Checked)
+                string BinaryCode1 = Convert.ToString(pr1, 2);
+                string str1 = "";
+                for (int i = 0; i < BinaryCode1.Length; i++)
+                {
+                    if (BinaryCode1[i] == '1')
+                    {
+                        str1 += "0";
+                    }
+                    if (BinaryCode1[i] == '0')
+                    {
+                        str1 += "1";
+                    }
+                }
+            string BinaryCode2 = Convert.ToString(pr2, 2);
+            string str2 = "";
+            for (int i = 0; i < BinaryCode2.Length; i++)
             {
-                int pr1 = Convert.ToInt32(textBox1.Text);
-                int pr2 = Convert.ToInt32(textBox2.Text);
-                int or = ~(pr1 + pr2);
-                textBox3.Text = Convert.ToString(or, 8);
+                if (BinaryCode2[i] == '1')
+                {
+                    str2 += "0";
+                }
+                if (BinaryCode2[i] == '0')
+                {
+                    str2 += "1";
+                }
             }
-            if (radioButton3.Checked)
-            {
-                int pr1 = Convert.ToInt32(textBox1.Text);
-                int pr2 = Convert.ToInt32(textBox2.Text);
-                int or = ~(pr1 + pr2);
-                textBox3.Text = Convert.ToString(or, 10);
-            }
-            if (radioButton4.Checked)
-            {
-                int pr1 = Convert.ToInt32(textBox1.Text);
-                int pr2 = Convert.ToInt32(textBox2.Text);
-                int or = ~(pr1 + pr2);
-                textBox3.Text = Convert.ToString(or, 16);
-            }
+            textBox3.Text = str1 + " " + str2;
         }
     }
 }
