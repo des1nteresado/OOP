@@ -94,6 +94,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Запрос №2";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -103,20 +104,21 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "Запрос №1";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(488, 240);
+            this.textBox3.Location = new System.Drawing.Point(491, 246);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(184, 46);
+            this.textBox3.Size = new System.Drawing.Size(184, 56);
             this.textBox3.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(718, 411);
+            this.ClientSize = new System.Drawing.Size(731, 352);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);

@@ -60,7 +60,7 @@ namespace WindowsFormsApp2
             {
                 textBox2.Clear();
                 List<int> MaxSpeed = new List<int>(c);
-                textBox1.TextAlign = HorizontalAlignment.Center;
+                textBox2.TextAlign = HorizontalAlignment.Center;
                 Random rnd = new Random();
                 for (int i = 0; i < c; i++)
                 {
@@ -91,6 +91,28 @@ namespace WindowsFormsApp2
             get.Invoke(Sort.Count - 1, 0);
             textBox2.Text = stroka;
             stroka = "";
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox3.Clear();
+            textBox3.TextAlign = HorizontalAlignment.Center;
+            var minSpeedInt = from t in Sort
+                           where t < 200
+                           orderby t descending
+                           select t;
+            foreach(int u in minSpeedInt)
+            {
+                textBox3.Text += u + " ";
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox3.Clear();
+            textBox3.TextAlign = HorizontalAlignment.Center;
+            int maxSpeed = Sort.Max();
+            textBox3.Text += maxSpeed;
         }
     }
 }
