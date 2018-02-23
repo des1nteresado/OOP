@@ -26,4 +26,6 @@ namespace WindowsFormsApp1
             Pubhouse.PubCity = textBox3.Text;
             Pubhouse.Type = comboBox1.Text;
             this.Close();
+        }
+    }
 }
