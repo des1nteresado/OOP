@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Book>
+    <Name>хех</Name>
+    <Udk>123</Udk>
+    <Pages>211</Pages>
+    <Year>23</Year>
+    <Cd>false</Cd>
+    <Dvd>true</Dvd>
+    <Date>1 января 2018 г.</Date>
+    <AuthorFIO>НуАр</AuthorFIO>
+    <AuthorCountry>Белалусь</AuthorCountry>
+    <AuthorSex>Мужчина</AuthorSex>
+    <Pubname>Гоша руб</Pubname>
+    <PubCountry>3</PubCountry>
+    <PubCity>Ганградеш</PubCity>
+    <Type>Государтсвенное</Type>
+  </Book>
+</ArrayOfBook>/ArrayOfBook>
