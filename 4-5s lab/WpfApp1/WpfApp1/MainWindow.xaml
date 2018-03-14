@@ -1,0 +1,113 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Loaded="TextEditLoad"
+        Title="Блокнот" Height="350" Width="525" Name="mainWindow" Icon="images/блокнот.png">
+    <Window.Resources>
+        <Style x:Key="DarkRose">
+            <Setter Property="Control.FontFamily" Value="Malgun Gotic"/>
+            <Setter Property="Control.Background" Value="#334351"/>
+            <Setter Property="Control.Foreground" Value="#ffffff"/>
+            <Setter Property="Control.BorderBrush" Value="#334351"/>
+            <Setter Property="Control.ForceCursor" Value="True" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="40" />
+            <RowDefinition />
+            <RowDefinition Height="23" />
+        </Grid.RowDefinitions>
+        <RichTextBox x:Name="richtextBox1" PreviewKeyDown="richtextBox1_PreviewKeyDown" Grid.Row="2" AllowDrop="True" Block.LineStackingStrategy="BlockLineHeight">
+        </RichTextBox>
+        <Menu Grid.Row="0" Style="{StaticResource DarkRose}">
+            <MenuItem Style="{StaticResource DarkRose}" Header="Файл">
+                <MenuItem Style="{StaticResource DarkRose}" Header="Создать" Click="Create_Click" />
+                <MenuItem Style="{StaticResource DarkRose}" Header="Открыть" Click="Open_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Сохранить" Click="Save_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Печать" Click="Print_Click"/>
+                <Separator Style="{StaticResource DarkRose}"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Выход" Click="Close_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource DarkRose}" Header="Правка">
+                <MenuItem Style="{StaticResource DarkRose}" Header="Отменить" Click="Undo_Click"/>
+                <Separator Style="{StaticResource DarkRose}" />
+                <MenuItem Style="{StaticResource DarkRose}" Header="Вырезать" Click="Cut_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Копировать" Click="Copy_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Вставить" Click="Paste_Click"/>
+                <Separator Style="{StaticResource DarkRose}"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Время и дата" Click="Time_Click"/>
+            </MenuItem>
+            <MenuItem Style="{StaticResource DarkRose}" Header="Текст">
+                <MenuItem Style="{StaticResource DarkRose}" Header="Жирный" Command="EditingCommands.ToggleBold"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Курсив" Command="EditingCommands.ToggleItalic"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="Перечеркнутый" Command="EditingCommands.ToggleUnderline"/>
+            </MenuItem>
+        </Menu>
+
+        <Label Grid.Row="1" Style="{StaticResource DarkRose}">
+            <ToolBarTray Style="{StaticResource DarkRose}">
+            <ToolBar >
+                    <Button ToolTip="Открыть файл" Width="25" Height="20" Click="Open_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/folder.png" />
+                    </Button.Background>
+                </Button>
+                    <Button ToolTip="Сохранить файл" Width="25" Height="20" Click="Save_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/disketa.png" />
+                    </Button.Background>
+                </Button>
+                    <Button ToolTip="Печать файл" Width="25" Height="20" Click="Print_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/printer.png" />
+                    </Button.Background>
+                </Button>
+                    <Button ToolTip="Отменить" Width="25" Height="20" Click="Undo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/nazad.png" />
+                    </Button.Background>
+                </Button>
+                    <Button ToolTip="Вернуть" Width="25" Height="20" Click="Redo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/povtor.png" />
+                    </Button.Background>
+                </Button>
+            </ToolBar>
+                <ToolBar FontFamily="Times New Roman" FontSize="16">
+                    <Button FontWeight="Bold" ToolTip="Жирный" Command="EditingCommands.ToggleBold">
+                        <Bold>B</Bold></Button>
+                    <Button FontStyle="Italic" ToolTip="Курсив" Command="EditingCommands.ToggleItalic" xml:space="preserve">
+                        <Italic>I</Italic>
+                    </Button>
+                    <Button ToolTip="Подчеркнутый" Command="EditingCommands.ToggleUnderline">
+                        <Underline>U</Underline></Button>
+                </ToolBar>
+                <ToolBar ComboBox.SelectionChanged="ToolBar_SelectionChanged_1">
+                    <ComboBox x:Name="fonts"
+                          MinWidth="80"
+                          ItemsSource="{x:Static Fonts.SystemFontFamilies}"
+                          ToolTip="Шрифт"/>
+                    <ComboBox x:Name="fontSize"
+                          MinWidth="40"
+                          ToolTip="Размер шрифта"/>
+                    <ComboBox x:Name="fontColor"
+                          MinWidth="40"
+                          ToolTip="Цвет"/>
+                    <ComboBox x:Name="fontColor2"
+                          MinWidth="40"
+                          ToolTip="Выделение цветом"/>
+                </ToolBar>
+                </ToolBarTray>
+        </Label>
+        <Label x:Name="label2"  Grid.Row="3" Style="{StaticResource DarkRose}" >
+            
+        </Label>
+        
+    </Grid>
+</Window>
