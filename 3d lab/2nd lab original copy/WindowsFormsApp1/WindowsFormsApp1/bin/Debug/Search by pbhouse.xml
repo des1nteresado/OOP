@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
-    <Name>БлаБла</Name>
-    <Udk>233</Udk>
-    <Pages>3</Pages>
-    <Year>1899</Year>
+    <Name>Анна Каренина</Name>
+    <Udk>1233.2</Udk>
+    <Pages>864</Pages>
+    <Year>1877</Year>
     <Cd>false</Cd>
     <Dvd>false</Dvd>
-    <Date>2 февраля 2018 г.</Date>
-    <AuthorFIO>Пуплышкин</AuthorFIO>
-    <AuthorCountry>Мичиган</AuthorCountry>
-    <AuthorSex>Женщина</AuthorSex>
-    <Pubname>ГордКниг</Pubname>
-    <PubCountry>Перышко</PubCountry>
-    <PubCity>Стебелек</PubCity>
-    <Type>Частное</Type>
-  </Book>
-</ArrayOfBook>ртсвенное</Type>
+    <Date>1 февраля 2018 г.</Date>
+    <AuthorFIO>Лев Николаевич Толстой</AuthorFIO>
+    <AuthorCountry>Россия</AuthorCountry>
+    <AuthorSex>Мужчина</AuthorSex>
+    <Pubname>ЮбилейКниг</Pubname>
+    <PubCountry>Россия</PubCountry>
+    <PubCity>Томск</PubCity>
+    <Type>Государтсвенное</Type>
   </Book>
 </ArrayOfBook>

@@ -17,6 +17,7 @@ using System.IO;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Resources;
+using System.Globalization;
 
 namespace WpfApp1
 {
@@ -30,8 +31,50 @@ namespace WpfApp1
             InitializeComponent();
             richtextBox1.AddHandler(RichTextBox.DragOverEvent, new DragEventHandler(RichTextBox_DragOver), true);
             richtextBox1.AddHandler(RichTextBox.DropEvent, new DragEventHandler(RichTextBox_Drop), true);
-            
             label2.Content = Text.size;
+
+
+            App.LanguageChanged += LanguageChanged;
+
+            CultureInfo currLang = App.Language;
+
+            //Заполняем меню смены языка:
+            menuLanguage.Items.Clear();
+            foreach (var lang in App.Languages)
+            {
+                MenuItem menuLang = new MenuItem();
+                menuLang.Header = lang.DisplayName;
+                menuLang.Tag = lang;
+                menuLang.IsChecked = lang.Equals(currLang);
+                menuLang.Click += ChangeLanguageClick;
+                menuLanguage.Items.Add(menuLang);
+            }
+        }
+
+        private void LanguageChanged(Object sender, EventArgs e)
+        {
+            CultureInfo currLang = App.Language;
+
+            //Отмечаем нужный пункт смены языка как выбранный язык
+            foreach (MenuItem i in menuLanguage.Items)
+            {
+                CultureInfo ci = i.Tag as CultureInfo;
+                i.IsChecked = ci != null && ci.Equals(currLang);
+            }
+        }
+
+        private void ChangeLanguageClick(Object sender, EventArgs e)
+        {
+            MenuItem mi = sender as MenuItem;
+            if (mi != null)
+            {
+                CultureInfo lang = mi.Tag as CultureInfo;
+                if (lang != null)
+                {
+                    App.Language = lang;
+                }
+            }
+
         }
 
         private void RichTextBox_DragOver(object sender, DragEventArgs e)
@@ -251,7 +294,7 @@ namespace WpfApp1
 
         private void richtextBox1_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            string str = "Кол.во символов: " + (GetLength(richtextBox1) - 1).ToString();
+            string str = (GetLength(richtextBox1) - 1).ToString();
             label2.Content = str;
         }
     }

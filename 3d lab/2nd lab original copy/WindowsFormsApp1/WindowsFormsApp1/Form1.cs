@@ -375,8 +375,10 @@ namespace WindowsFormsApp1
             using (FileStream fs = new FileStream("books.xml", FileMode.OpenOrCreate))
             {
                 if (fs.Length == 0)
+                {
                     MessageBox.Show("Файл пуст.");
-                ur = false;
+                    ur = false;
+                }
             }
             if (ur)
             {
@@ -403,7 +405,7 @@ namespace WindowsFormsApp1
                 {
                     formatter1.Serialize(fs, Sorter);
                 }
-                MessageBox.Show("Сортировка по авторам успешно выполнена! Файл перезаписан.");
+                MessageBox.Show("Сортировка по году успешно выполнена! Файл перезаписан.");
             }
 
         }
@@ -417,8 +419,10 @@ namespace WindowsFormsApp1
             using (FileStream fs = new FileStream("books.xml", FileMode.OpenOrCreate))
             {
                 if (fs.Length == 0)
+                {
                     MessageBox.Show("Файл пуст.");
-                ur = false;
+                    ur = false;
+                }
             }
             if (ur)
             {

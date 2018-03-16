@@ -3,10 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Loaded="TextEditLoad"
-        Title="Блокнот" Height="350" Width="525" Name="mainWindow" Icon="images/блокнот.png">
+        Title="{DynamicResource m_Title}" Height="350" Width="525" Name="mainWindow" Icon="images/блокнот.png">
     <Window.Resources>
         <Style x:Key="DarkRose">
             <Setter Property="Control.FontFamily" Value="Malgun Gotic"/>
@@ -23,91 +24,92 @@
             <RowDefinition />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        <RichTextBox x:Name="richtextBox1" PreviewKeyDown="richtextBox1_PreviewKeyDown" Grid.Row="2" AllowDrop="True" Block.LineStackingStrategy="BlockLineHeight">
-        </RichTextBox>
+                <RichTextBox x:Name="richtextBox1" Grid.Row="2"  PreviewKeyDown="richtextBox1_PreviewKeyDown" AllowDrop="True" Block.LineStackingStrategy="BlockLineHeight"/>
+        
         <Menu Grid.Row="0" Style="{StaticResource DarkRose}">
-            <MenuItem Style="{StaticResource DarkRose}" Header="Файл">
-                <MenuItem Style="{StaticResource DarkRose}" Header="Создать" Click="Create_Click" />
-                <MenuItem Style="{StaticResource DarkRose}" Header="Открыть" Click="Open_Click"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Сохранить" Click="Save_Click"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Печать" Click="Print_Click"/>
+            <MenuItem Style="{StaticResource DarkRose}" x:Name="menuFile" Header="{DynamicResource m_menu_File}">
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Create}" Click="Create_Click" />
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Open}" Click="Open_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Save}" Click="Save_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Print}" Click="Print_Click"/>
                 <Separator Style="{StaticResource DarkRose}"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Выход" Click="Close_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Exit}" Click="Close_Click"/>
             </MenuItem>
-            <MenuItem Style="{StaticResource DarkRose}" Header="Правка">
-                <MenuItem Style="{StaticResource DarkRose}" Header="Отменить" Click="Undo_Click"/>
+            <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_Edit}">
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_edit_Undo}" Click="Undo_Click"/>
                 <Separator Style="{StaticResource DarkRose}" />
-                <MenuItem Style="{StaticResource DarkRose}" Header="Вырезать" Click="Cut_Click"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Копировать" Click="Copy_Click"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Вставить" Click="Paste_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_edit_Cut}" Click="Cut_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_edit_Copy}" Click="Copy_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_edit_Paste}" Click="Paste_Click"/>
                 <Separator Style="{StaticResource DarkRose}"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Время и дата" Click="Time_Click"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_edit_Time}" Click="Time_Click"/>
             </MenuItem>
-            <MenuItem Style="{StaticResource DarkRose}" Header="Текст">
-                <MenuItem Style="{StaticResource DarkRose}" Header="Жирный" Command="EditingCommands.ToggleBold"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Курсив" Command="EditingCommands.ToggleItalic"/>
-                <MenuItem Style="{StaticResource DarkRose}" Header="Перечеркнутый" Command="EditingCommands.ToggleUnderline"/>
+            <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_Text}">
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_text_Bold}" Command="EditingCommands.ToggleBold"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_text_Italic}" Command="EditingCommands.ToggleItalic"/>
+                <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_text_Underline}" Command="EditingCommands.ToggleUnderline"/>
             </MenuItem>
+                    <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
         </Menu>
 
         <Label Grid.Row="1" Style="{StaticResource DarkRose}">
             <ToolBarTray Style="{StaticResource DarkRose}">
             <ToolBar >
-                    <Button ToolTip="Открыть файл" Width="25" Height="20" Click="Open_Click">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Open}" Width="25" Height="20" Click="Open_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="images/folder.png" />
                     </Button.Background>
                 </Button>
-                    <Button ToolTip="Сохранить файл" Width="25" Height="20" Click="Save_Click">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Save}" Width="25" Height="20" Click="Save_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="images/disketa.png" />
                     </Button.Background>
                 </Button>
-                    <Button ToolTip="Печать файл" Width="25" Height="20" Click="Print_Click">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Print}" Width="25" Height="20" Click="Print_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="images/printer.png" />
                     </Button.Background>
                 </Button>
-                    <Button ToolTip="Отменить" Width="25" Height="20" Click="Undo_Click">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Undo}" Width="25" Height="20" Click="Undo_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="images/nazad.png" />
                     </Button.Background>
                 </Button>
-                    <Button ToolTip="Вернуть" Width="25" Height="20" Click="Redo_Click">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Redo}" Width="25" Height="20" Click="Redo_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="images/povtor.png" />
                     </Button.Background>
                 </Button>
             </ToolBar>
                 <ToolBar FontFamily="Times New Roman" FontSize="16">
-                    <Button FontWeight="Bold" ToolTip="Жирный" Command="EditingCommands.ToggleBold">
+                    <Button FontWeight="Bold" ToolTip="{DynamicResource m_tbprompt_Bold}" Command="EditingCommands.ToggleBold">
                         <Bold>B</Bold></Button>
-                    <Button FontStyle="Italic" ToolTip="Курсив" Command="EditingCommands.ToggleItalic" xml:space="preserve">
+                    <Button FontStyle="Italic" ToolTip="{DynamicResource m_tbprompt_Italic}" Command="EditingCommands.ToggleItalic" xml:space="preserve">
                         <Italic>I</Italic>
                     </Button>
-                    <Button ToolTip="Подчеркнутый" Command="EditingCommands.ToggleUnderline">
+                    <Button ToolTip="{DynamicResource m_tbprompt_Underline}" Command="EditingCommands.ToggleUnderline">
                         <Underline>U</Underline></Button>
                 </ToolBar>
                 <ToolBar ComboBox.SelectionChanged="ToolBar_SelectionChanged_1">
                     <ComboBox x:Name="fonts"
                           MinWidth="80"
                           ItemsSource="{x:Static Fonts.SystemFontFamilies}"
-                          ToolTip="Шрифт"/>
+                          ToolTip="{DynamicResource m_tbprompt_Font}"/>
                     <ComboBox x:Name="fontSize"
                           MinWidth="40"
-                          ToolTip="Размер шрифта"/>
+                          ToolTip="{DynamicResource m_tbprompt_Fontsize}"/>
                     <ComboBox x:Name="fontColor"
                           MinWidth="40"
-                          ToolTip="Цвет"/>
+                          ToolTip="{DynamicResource m_tbprompt_Fontcolor}"/>
                     <ComboBox x:Name="fontColor2"
                           MinWidth="40"
-                          ToolTip="Выделение цветом"/>
+                          ToolTip="{DynamicResource m_tbprompt_Highlight}"/>
                 </ToolBar>
                 </ToolBarTray>
         </Label>
-        <Label x:Name="label2"  Grid.Row="3" Style="{StaticResource DarkRose}" >
-            
-        </Label>
-        
+        <Label x:Name="label2"  Grid.Row="3" Style="{StaticResource DarkRose}"/>
+
+
+
     </Grid>
 </Window>

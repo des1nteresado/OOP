@@ -13,3 +13,6 @@ C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfA
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\App.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\Resources\lang.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\WpfApp1\obj\Debug\Resources\lang.ru-RU.baml
