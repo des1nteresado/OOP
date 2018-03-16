@@ -26,13 +26,15 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<TabItem> _tabItems;
+        private TabItem _tabAdd;
+        List<RichTextBox> riches = new List<RichTextBox>();
+        int u = 0;
+        int slct;
+
         public MainWindow()
         {
             InitializeComponent();
-            richtextBox1.AddHandler(RichTextBox.DragOverEvent, new DragEventHandler(RichTextBox_DragOver), true);
-            richtextBox1.AddHandler(RichTextBox.DropEvent, new DragEventHandler(RichTextBox_Drop), true);
-            label2.Content = Text.size;
-
 
             App.LanguageChanged += LanguageChanged;
 
@@ -48,6 +50,164 @@ namespace WpfApp1
                 menuLang.IsChecked = lang.Equals(currLang);
                 menuLang.Click += ChangeLanguageClick;
                 menuLanguage.Items.Add(menuLang);
+            }
+
+            // initialize tabItem array
+            _tabItems = new List<TabItem>();
+
+            // add a tabItem with + in header 
+            _tabAdd = new TabItem();
+            _tabAdd.Header = "+";
+            // tabAdd.MouseLeftButtonUp += new MouseButtonEventHandler(tabAdd_MouseLeftButtonUp);
+
+            _tabItems.Add(_tabAdd);
+
+            // add first tab
+            this.AddTabItem();
+
+            // bind tab control
+            tabDynamic.DataContext = _tabItems;
+
+            tabDynamic.SelectedIndex = 0;
+        }
+
+        private TabItem AddTabItem()
+        {
+            int count = _tabItems.Count;
+
+            // create new tab item
+            TabItem tab = new TabItem();
+
+            tab.Header = string.Format("Tab {0}", count);
+            tab.Name = string.Format("tab{0}", count);
+            tab.HeaderTemplate = tabDynamic.FindResource("TabHeader") as DataTemplate;
+
+
+            // add controls to tab item, this case I added just a textbox
+
+            //<RichTextBox x:Name="richtextBox1" PreviewKeyDown="richtextBox1_PreviewKeyDown" AllowDrop="True" Block.LineStackingStrategy="BlockLineHeight"/>
+
+            RichTextBox rich = new RichTextBox();
+            rich.PreviewKeyDown += richtextBox1_PreviewKeyDown;
+            rich.AllowDrop = true;
+            rich.AddHandler(RichTextBox.DragOverEvent, new DragEventHandler(RichTextBox_DragOver), true);
+            rich.AddHandler(RichTextBox.DropEvent, new DragEventHandler(RichTextBox_Drop), true);
+            rich.Name = "richtextBox1";
+            rich.PreviewKeyDown += richtextBox1_PreviewKeyDown;
+            rich.AllowDrop = true;
+            rich.Document.Blocks.Clear();
+            riches.Add(rich);
+            tab.Content = riches[u];
+            u++;
+
+            //TextBox txt = new TextBox();
+            //txt.Name = "txt";
+
+            //tab.Content = txt;
+
+            // insert tab item right before the last (+) tab item
+            _tabItems.Insert(count - 1, tab);
+
+            return tab;
+        }
+
+        private void tabAdd_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            // clear tab control binding
+            tabDynamic.DataContext = null;
+
+            TabItem tab = this.AddTabItem();
+
+            // bind tab control
+            tabDynamic.DataContext = _tabItems;
+
+            // select newly added tab item
+            tabDynamic.SelectedItem = tab;
+        }
+
+
+        private void tabDynamic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TabItem tab = tabDynamic.SelectedItem as TabItem;
+            slct = _tabItems.IndexOf(tab);
+            if (tab == null) return;
+
+            if (tab.Equals(_tabAdd))
+            {
+                // clear tab control binding
+                tabDynamic.DataContext = null;
+
+                TabItem newTab = this.AddTabItem();
+
+                // bind tab control
+                tabDynamic.DataContext = _tabItems;
+
+                // select newly added tab item
+                tabDynamic.SelectedItem = newTab;
+            }
+            else
+            {
+                // your code here...
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            string tabName = (sender as Button).CommandParameter.ToString();
+
+            var item = tabDynamic.Items.Cast<TabItem>().Where(i => i.Name.Equals(tabName)).SingleOrDefault();
+
+            TabItem tab = item as TabItem;
+
+            if (tab != null)
+            {
+                if (_tabItems.Count < 3)
+                {
+                    MessageBox.Show("Cannot remove last tab.");
+                }
+                else if (MessageBox.Show(string.Format("Сохранить текущий файл?", "Сохранение"),
+                    "Сохранение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+
+                {
+                        Save_Click(sender, e);
+                    // get selected tab
+                    TabItem selectedTab = tabDynamic.SelectedItem as TabItem;
+
+                    // clear tab control binding
+                    tabDynamic.DataContext = null;
+
+                    _tabItems.Remove(tab);
+
+                    // bind tab control
+                    tabDynamic.DataContext = _tabItems;
+
+                    // select previously selected tab. if that is removed then select first tab
+                    if (selectedTab == null || selectedTab.Equals(tab))
+                    {
+                        selectedTab = _tabItems[0];
+                    }
+                    tabDynamic.SelectedItem = selectedTab;
+                }
+                else
+                {
+                    // get selected tab
+                    TabItem selectedTab = tabDynamic.SelectedItem as TabItem;
+
+                    // clear tab control binding
+                    tabDynamic.DataContext = null;
+
+                    _tabItems.Remove(tab);
+
+                    // bind tab control
+                    tabDynamic.DataContext = _tabItems;
+
+                    // select previously selected tab. if that is removed then select first tab
+                    if (selectedTab == null || selectedTab.Equals(tab))
+                    {
+                        selectedTab = _tabItems[0];
+                    }
+                    tabDynamic.SelectedItem = selectedTab;
+                }
             }
         }
 
@@ -114,7 +274,7 @@ namespace WpfApp1
                     try
                     {
                         // Open the document in the RichTextBox.
-                        range = new TextRange(richtextBox1.Document.ContentStart, richtextBox1.Document.ContentEnd);
+                        range = new TextRange(riches[slct].Document.ContentStart, riches[slct].Document.ContentEnd);
                         fStream = new FileStream(docPath[0], FileMode.OpenOrCreate);
                         range.Load(fStream, dataFormat);
                         fStream.Close();
@@ -125,18 +285,6 @@ namespace WpfApp1
                     }
                 }
             }
-        }
-        public static void GetLength(object obj)
-        {
-            RichTextBox rtb = (RichTextBox)obj;
-            var textRange = new TextRange(rtb.Document.ContentStart, rtb.Document.ContentEnd);
-            Text.size = textRange.Text.Length;
-        }
-
-
-        public static class Text
-        {
-            public static int size;
         }
 
         private void TextEditLoad(object sender, RoutedEventArgs e)
@@ -167,25 +315,29 @@ namespace WpfApp1
             new Uri("Normal Select.ani", UriKind.Relative));
             Cursor customCursor = new Cursor(sri.Stream);
             this.Cursor = customCursor;
-            richtextBox1.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            TimerCallback tm = new TimerCallback(GetLength);
-            Timer timer = new Timer(tm, richtextBox1, 0, 2000);
+            riches[slct].VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+         
         }
 
       
         private void Open_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = System.Windows.MessageBox.Show("Сохранить текущий файл?", "Сохранение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                Save_Click(sender, e);
+            }
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Открыть файл";
             dialog.Filter = "Текстовый файл (*.txt)|*.txt| Все файлы (*.*)|*.*";
             if (dialog.ShowDialog() == true)
             {
-                richtextBox1.Document.Blocks.Clear();
+                riches[slct].Document.Blocks.Clear();
                 string strfilename = dialog.FileName;
                 using (StreamReader sr = new StreamReader(strfilename, Encoding.Default))
                 {
                     string filetext = sr.ReadToEnd();
-                    richtextBox1.AppendText(filetext);
+                    riches[slct].AppendText(filetext);
                 }
             }
         }
@@ -199,7 +351,7 @@ namespace WpfApp1
             {
                 using (StreamWriter sw = new StreamWriter(dialog.FileName, true, Encoding.Default))
                 {
-                    string richText = new TextRange(richtextBox1.Document.ContentStart, richtextBox1.Document.ContentEnd).Text;
+                    string richText = new TextRange(riches[slct].Document.ContentStart, riches[slct].Document.ContentEnd).Text;
                     sw.Write(richText);
                 }
             }
@@ -216,7 +368,7 @@ namespace WpfApp1
             {
                 Save_Click(sender, e);
             }
-                richtextBox1.Document.Blocks.Clear();
+            riches[slct].Document.Blocks.Clear();
         }
         private void Print_Click(object sender, RoutedEventArgs e)
         {
@@ -225,32 +377,32 @@ namespace WpfApp1
             PrintDialog dialog = new PrintDialog();
             if(dialog.ShowDialog() == true)
             {
-                dialog.PrintVisual(richtextBox1 as Visual, "Распечатываемый элемент блокнота");
+                dialog.PrintVisual(riches[slct] as Visual, "Распечатываемый элемент блокнота");
             }
         }
         private void Undo_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.Undo();
+            riches[slct].Undo();
         }
         private void Redo_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.Redo();
+            riches[slct].Redo();
         }
         private void Cut_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.Cut();
+            riches[slct].Cut();
         }
         private void Copy_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.Copy();
+            riches[slct].Copy();
         }
         private void Paste_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.Paste();
+            riches[slct].Paste();
         }
         private void Time_Click(object sender, RoutedEventArgs e)
         {
-            richtextBox1.AppendText(DateTime.Now.ToString());
+            riches[slct].AppendText(DateTime.Now.ToString());
         }
         private void Color_Click(object sender, RoutedEventArgs e)
         {
@@ -260,7 +412,7 @@ namespace WpfApp1
         {
             if(value != null)
             {
-                richtextBox1.Selection.ApplyPropertyValue(property, value);
+                riches[slct].Selection.ApplyPropertyValue(property, value);
             }
         }
         private void ToolBar_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
@@ -294,7 +446,7 @@ namespace WpfApp1
 
         private void richtextBox1_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            string str = (GetLength(richtextBox1) - 1).ToString();
+            string str = (GetLength(riches[slct]) - 1).ToString();
             label2.Content = str;
         }
     }
