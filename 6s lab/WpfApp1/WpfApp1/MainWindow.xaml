@@ -1,0 +1,218 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Common"
+        xmlns:MyNamespace="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Loaded="TextEditLoad"
+        Title="{DynamicResource m_Title}" Height="350" Width="525" Name="mainWindow" Icon="images/блокнот.png">
+    <Window.Resources>
+        <!--<Style x:Key="DarkRose">
+            <Setter Property="Control.FontFamily" Value="Malgun Gotic"/>
+            <Setter Property="Control.Background" Value="#334351"/>
+            <Setter Property="Control.Foreground" Value="#ffffff"/>
+            <Setter Property="Control.BorderBrush" Value="#334351"/>
+            <Setter Property="Control.ForceCursor" Value="True" />
+        </Style>-->
+        <Style x:Key="bigButton">
+            <Setter Property="Control.Height" Value="30" />
+            <Setter Property="Control.Width" Value="35" />
+        </Style>
+        <Style x:Key="smallButton">
+            <Setter Property="Control.Height" Value="20" />
+            <Setter Property="Control.Width" Value="25" />
+        </Style>
+       
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="OnChecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="25"/>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="OnUnchecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                <ThicknessAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                    <SplineThicknessKeyFrame KeyTime="00:00:00.3000000" Value="1,1,1,1"/>
+                                </ThicknessAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+
+                        <DockPanel x:Name="dockPanel">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center"/>
+                            <Grid Margin="5,5,0,5" Width="50" Background="#FFC0CCD9">
+                                <TextBlock Text="ON" TextWrapping="Wrap" FontWeight="Bold" FontSize="12" HorizontalAlignment="Right" Margin="0,0,3,0"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="2,0,0,0" FontSize="12" FontWeight="Bold" Text="OFF" TextWrapping="Wrap"/>
+                                <Border HorizontalAlignment="Left" x:Name="slider" Width="23" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" RenderTransformOrigin="0.5,0.5" Margin="1,1,1,1">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                            <SkewTransform AngleX="0" AngleY="0"/>
+                                            <RotateTransform Angle="0"/>
+                                            <TranslateTransform X="0" Y="0"/>
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <Border.BorderBrush>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                            <GradientStop Color="#FF4490FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.BorderBrush>
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF8AB4FF" Offset="1"/>
+                                            <GradientStop Color="#FFD1E2FF" Offset="0"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnUnchecking}" x:Name="OnUnchecking_BeginStoryboard"/>
+                                </Trigger.ExitActions>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnChecking}" x:Name="OnChecking_BeginStoryboard"/>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Style="{DynamicResource GridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Name="RowDef1" Height="20" />
+            <RowDefinition Name="RowDef2" Height="40" />
+            <RowDefinition />
+            <RowDefinition Height="23" />
+        </Grid.RowDefinitions>
+        <TabControl Name="tabDynamic" ItemsSource="{Binding}" Grid.Row="2" SelectionChanged="tabDynamic_SelectionChanged">
+            <TabControl.Resources>
+                <DataTemplate x:Key="TabHeader" DataType="TabItem">
+                    <DockPanel>
+                        <Button Name="btnDelete" DockPanel.Dock="Right" Margin="5,0,0,0" Padding="0" Click="btnDelete_Click" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabItem}}, Path=Name}" Opacity="1" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFF41414">
+                            <Bold>X</Bold>
+                        </Button>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=TabItem }, Path=Header}" />
+                    </DockPanel>
+                </DataTemplate>
+                <Style TargetType="TextBox">
+                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="AcceptsReturn" Value="True"></Setter>
+                    <Setter Property="TextWrapping" Value="WrapWithOverflow"></Setter>
+                    <Setter Property="MaxLines" Value="5000"></Setter>
+                    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"></Setter>
+                    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"></Setter>
+                </Style>
+            </TabControl.Resources>
+        </TabControl>
+        
+        <Menu Name="Menu" Grid.Row="0" Style="{DynamicResource MenuStyle}">
+            <MenuItem Style="{DynamicResource MenuItemStyle}" x:Name="menuFile" Header="{DynamicResource m_menu_File}">
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_Create}" Click="Create_Click" />
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_Open}" Click="Open_Click"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_Save}" Click="Save_Click"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_Print}" Click="Print_Click"/>
+                <MenuItem x:Name="mnuFimeMRU" Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_RFiles}">
+                    <local:RecentFileList  x:Name="RecentFileList" />   
+                </MenuItem>
+
+                <Separator/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_file_Exit}" Click="Close_Click"/>
+            </MenuItem>
+            <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_Edit}">
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_edit_Undo}" Click="Undo_Click"/>
+                <Separator />
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_edit_Cut}" Click="Cut_Click"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_edit_Copy}" Click="Copy_Click"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_edit_Paste}" Click="Paste_Click"/>
+                <Separator/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_edit_Time}" Click="Time_Click"/>
+            </MenuItem>
+            <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_Text}">
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_text_Bold}" Command="EditingCommands.ToggleBold"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_text_Italic}" Command="EditingCommands.ToggleItalic"/>
+                <MenuItem Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_text_Underline}" Command="EditingCommands.ToggleUnderline"/>
+            </MenuItem>
+            <MenuItem x:Name="menuLanguage" Style="{DynamicResource MenuItemStyle}" Header="{DynamicResource m_menu_Language}" />
+            
+        </Menu>
+       
+        <Label Grid.Row="1">
+            <ToolBarTray Name="ToolBarTray1" Style="{DynamicResource ToolBarStyle}">
+            <ToolBar Name="ToolBar1">
+                    <Button Name="But1" ToolTip="{DynamicResource m_tbprompt_Open}" Style="{StaticResource smallButton}" Click="Open_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/folder.png" />
+                    </Button.Background>
+                </Button>
+                    <Button Name="But2" ToolTip="{DynamicResource m_tbprompt_Save}" Style="{StaticResource smallButton}" Click="Save_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/disketa.png" />
+                    </Button.Background>
+                </Button>
+                    <Button Name="But3" ToolTip="{DynamicResource m_tbprompt_Print}" Style="{StaticResource smallButton}" Click="Print_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/printer.png" />
+                    </Button.Background>
+                </Button>
+                    <Button Name="But4" ToolTip="{DynamicResource m_tbprompt_Undo}" Style="{StaticResource smallButton}"  Click="Undo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/nazad.png" />
+                    </Button.Background>
+                </Button>
+                    <Button Name="But5" ToolTip="{DynamicResource m_tbprompt_Redo}" Style="{StaticResource smallButton}" Click="Redo_Click">
+                    <Button.Background>
+                        <ImageBrush ImageSource="images/povtor.png" />
+                    </Button.Background>
+                </Button>
+            </ToolBar>
+                <ToolBar Name="ToolBar2" FontFamily="Times New Roman"  FontSize="16">
+                    <Button FontWeight="Bold" ToolTip="{DynamicResource m_tbprompt_Bold}" Command="EditingCommands.ToggleBold">
+                        <Bold>B</Bold></Button>
+                    <Button FontStyle="Italic" ToolTip="{DynamicResource m_tbprompt_Italic}" Command="EditingCommands.ToggleItalic" xml:space="preserve">
+                        <Italic>I</Italic>
+                    </Button>
+                    <Button ToolTip="{DynamicResource m_tbprompt_Underline}" Command="EditingCommands.ToggleUnderline">
+                        <Underline>U</Underline></Button>
+                </ToolBar>
+                <ToolBar Name="ToolBar3" ComboBox.SelectionChanged="ToolBar_SelectionChanged_1">
+                    <ComboBox x:Name="fonts"
+                          MinWidth="80"
+                          ItemsSource="{x:Static Fonts.SystemFontFamilies}"
+                          ToolTip="{DynamicResource m_tbprompt_Font}"/>
+                    <ComboBox x:Name="fontSize"
+                          MinWidth="40"
+                          ToolTip="{DynamicResource m_tbprompt_Fontsize}"/>
+                    <ComboBox x:Name="fontColor"
+                          MinWidth="40"
+                          ToolTip="{DynamicResource m_tbprompt_Fontcolor}"/>
+                    <ComboBox x:Name="fontColor2"
+                          MinWidth="40"
+                          ToolTip="{DynamicResource m_tbprompt_Highlight}"/>
+                    <ComboBox x:Name="styleBox" />
+                    <CheckBox x:Name="styleCheck" Style="{DynamicResource CheckBoxStyle1}" />
+                </ToolBar>
+                </ToolBarTray>
+        </Label>
+        <Label x:Name="label2"  Grid.Row="3" Style="{DynamicResource LabelStyle}" VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>

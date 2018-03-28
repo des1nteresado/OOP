@@ -3,21 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using System.Drawing;
-using System.Threading;
 using System.Windows.Resources;
 using System.Globalization;
+
 
 namespace WpfApp1
 {
@@ -29,6 +23,7 @@ namespace WpfApp1
         private List<TabItem> _tabItems;
         private TabItem _tabAdd;
         List<RichTextBox> riches = new List<RichTextBox>();
+
         int u = 0;
         int slct;
 
@@ -70,7 +65,7 @@ namespace WpfApp1
 
             tabDynamic.SelectedIndex = 0;
         }
-
+    
         private TabItem AddTabItem()
         {
             int count = _tabItems.Count;
@@ -327,7 +322,7 @@ namespace WpfApp1
             {
                 Save_Click(sender, e);
             }
-            OpenFileDialog dialog = new OpenFileDialog();
+            OpenFileDialog dialog = new OpenFileDialog(); //DynamicResource m_menu_file_Open
             dialog.Title = "Открыть файл";
             dialog.Filter = "Текстовый файл (*.txt)|*.txt| Все файлы (*.*)|*.*";
             if (dialog.ShowDialog() == true)
@@ -341,7 +336,7 @@ namespace WpfApp1
                 }
             }
         }
-
+        
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog dialog = new SaveFileDialog();

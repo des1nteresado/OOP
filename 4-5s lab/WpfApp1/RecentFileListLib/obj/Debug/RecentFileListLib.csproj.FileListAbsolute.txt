@@ -1,0 +1,6 @@
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\bin\Debug\RecentFileListLib.dll
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\bin\Debug\RecentFileListLib.pdb
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\obj\Debug\RecentFileListLib.csprojResolveAssemblyReference.cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\obj\Debug\RecentFileListLib.csproj.CoreCompileInputs.cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\obj\Debug\RecentFileListLib.dll
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab\WpfApp1\RecentFileListLib\obj\Debug\RecentFileListLib.pdb

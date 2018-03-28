@@ -1,0 +1,6 @@
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\bin\x86\Debug\RecentFileListLib.dll
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\bin\x86\Debug\RecentFileListLib.pdb
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\obj\x86\Debug\RecentFileListLib.csprojResolveAssemblyReference.cache
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\obj\x86\Debug\RecentFileListLib.csproj.CoreCompileInputs.cache
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\obj\x86\Debug\RecentFileListLib.dll
+C:\Users\Даниил Чернышев\Desktop\test\RecentFileList_src\RecentFileList\RecentFileListLib\obj\x86\Debug\RecentFileListLib.pdb

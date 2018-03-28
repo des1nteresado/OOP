@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
-        xmlns:local="clr-namespace:WpfApp1"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:Common"
+            mc:Ignorable="d"
         Loaded="TextEditLoad"
         Title="{DynamicResource m_Title}" Height="350" Width="525" Name="mainWindow" Icon="images/блокнот.png">
     <Window.Resources>
@@ -24,8 +23,6 @@
             <RowDefinition />
             <RowDefinition Height="23" />
         </Grid.RowDefinitions>
-        
-        
         <TabControl Name="tabDynamic" ItemsSource="{Binding}" Grid.Row="2" SelectionChanged="tabDynamic_SelectionChanged">
             <TabControl.Resources>
                 <DataTemplate x:Key="TabHeader" DataType="TabItem">
@@ -54,6 +51,10 @@
                 <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Open}" Click="Open_Click"/>
                 <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Save}" Click="Save_Click"/>
                 <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Print}" Click="Print_Click"/>
+                <MenuItem x:Name="mnuFimeMRU" Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_RFiles}">
+                    <local:RecentFileList x:Name="RecentFileList" />   
+                </MenuItem>
+
                 <Separator Style="{StaticResource DarkRose}"/>
                 <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_file_Exit}" Click="Close_Click"/>
             </MenuItem>
@@ -72,8 +73,9 @@
                 <MenuItem Style="{StaticResource DarkRose}" Header="{DynamicResource m_menu_text_Underline}" Command="EditingCommands.ToggleUnderline"/>
             </MenuItem>
                     <MenuItem x:Name="menuLanguage" Header="{DynamicResource m_menu_Language}" />
+            
         </Menu>
-
+       
         <Label Grid.Row="1" Style="{StaticResource DarkRose}">
             <ToolBarTray Style="{StaticResource DarkRose}">
             <ToolBar >
