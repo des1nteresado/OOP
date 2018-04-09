@@ -40,3 +40,26 @@ C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab — копи
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab — копия\WpfApp1\WpfApp1\obj\Debug\light.baml
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab — копия\WpfApp1\WpfApp1\obj\Debug\CustomControl.g.cs
 C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\4-5s lab — копия\WpfApp1\WpfApp1\obj\Debug\CustomControl.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\Resources\lang.ru-RU.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\Resources\lang.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\App.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\CustomControl.g.cs
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\App.g.cs
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\CustomControl.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\dark.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\light.baml
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.Cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\Даниил Чернышев\Desktop\STUDIES\OOP\6s lab\WpfApp1\WpfApp1\obj\Debug\WpfApp1.pdb
