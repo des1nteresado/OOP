@@ -136,61 +136,61 @@ namespace WpfApp1
         }
 
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
-            int cd = 0;
-            int dvd = 0;
-            Book book = new Book();
-            book.Name = textBox1.Text;
-            book.Udk = textBox2.Text;
-            book.Year = int.Parse(textBox3.Text);
-            book.Pages = int.Parse(textBox4.Text);
-            if (checkBox1.IsEnabled)
-            {
-                book.Cd = true;
-                cd = 1;
-            }
-            if (checkBox2.IsEnabled)
-            {
-                book.Dvd = true;
-                dvd = 1;
-            }
-            book.Date = dateTimePicker1.Text;
-            book.AuthorFIO = Author.AuthorFIO;
-            book.AuthorCountry = Author.AuthorCountry;
-            book.AuthorSex = Author.AuthorSex;
-            book.Pubname = Pubhouse.Pubname;
-            book.PubCountry = Pubhouse.PubCountry;
-            book.PubCity = Pubhouse.PubCity;
-            book.Type = Pubhouse.Type;
-            Box.box.Add(book);
+        //private void Button3_Click(object sender, EventArgs e)
+        //{
+        //    int cd = 0;
+        //    int dvd = 0;
+        //    Book book = new Book();
+        //    book.Name = textBox1.Text;
+        //    book.Udk = textBox2.Text;
+        //    book.Year = int.Parse(textBox3.Text);
+        //    book.Pages = int.Parse(textBox4.Text);
+        //    if (checkBox1.IsEnabled)
+        //    {
+        //        book.Cd = true;
+        //        cd = 1;
+        //    }
+        //    if (checkBox2.IsEnabled)
+        //    {
+        //        book.Dvd = true;
+        //        dvd = 1;
+        //    }
+        //    book.Date = dateTimePicker1.Text;
+        //    book.AuthorFIO = Author.AuthorFIO;
+        //    book.AuthorCountry = Author.AuthorCountry;
+        //    book.AuthorSex = Author.AuthorSex;
+        //    book.Pubname = Pubhouse.Pubname;
+        //    book.PubCountry = Pubhouse.PubCountry;
+        //    book.PubCity = Pubhouse.PubCity;
+        //    book.Type = Pubhouse.Type;
+        //    Box.box.Add(book);
 
-            sqlExpAuthors = String.Format("INSERT INTO Authors (УДК, ФИО, Страна, Пол) VALUES ({0}, '{1}', '{2}', '{3}')", book.Udk, book.AuthorFIO, book.AuthorCountry, book.AuthorSex);
-            sqlExpBooks = String.Format("INSERT INTO Books (УДК, Название, Страницы, Годизд, DVD, CD, Датапост)" +
-                " VALUES ({0}, '{1}', {2}, {3}, {4}, {5}, '{6}')", book.Udk, book.Name, book.Pages, book.Year, dvd, cd, book.Date);
-            sqlExpPubhouses = String.Format("INSERT INTO Pubhouses (УДК, Название, Страна, Город, Тип) " +
-                "VALUES ({0}, '{1}', '{2}', '{3}', '{4}')", book.Udk, book.Pubname, book.PubCountry, book.PubCity, book.Type);
+        //    sqlExpAuthors = String.Format("INSERT INTO Authors (УДК, ФИО, Страна, Пол) VALUES ({0}, '{1}', '{2}', '{3}')", book.Udk, book.AuthorFIO, book.AuthorCountry, book.AuthorSex);
+        //    sqlExpBooks = String.Format("INSERT INTO Books (УДК, Название, Страницы, Годизд, DVD, CD, Датапост)" +
+        //        " VALUES ({0}, '{1}', {2}, {3}, {4}, {5}, '{6}')", book.Udk, book.Name, book.Pages, book.Year, dvd, cd, book.Date);
+        //    sqlExpPubhouses = String.Format("INSERT INTO Pubhouses (УДК, Название, Страна, Город, Тип) " +
+        //        "VALUES ({0}, '{1}', '{2}', '{3}', '{4}')", book.Udk, book.Pubname, book.PubCountry, book.PubCity, book.Type);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpAuthors, connection);
-                SqlCommand command1 = new SqlCommand(sqlExpBooks, connection);
-                SqlCommand command2 = new SqlCommand(sqlExpPubhouses, connection);
-                int number = command.ExecuteNonQuery();
-                int number1 = command1.ExecuteNonQuery();
-                int number2 = command2.ExecuteNonQuery();
-            }
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        SqlCommand command = new SqlCommand(sqlExpAuthors, connection);
+        //        SqlCommand command1 = new SqlCommand(sqlExpBooks, connection);
+        //        SqlCommand command2 = new SqlCommand(sqlExpPubhouses, connection);
+        //        int number = command.ExecuteNonQuery();
+        //        int number1 = command1.ExecuteNonQuery();
+        //        int number2 = command2.ExecuteNonQuery();
+        //    }
 
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            checkBox1.IsEnabled = false;
-            checkBox2.IsEnabled = false;
-        }
+        //    textBox1.Clear();
+        //    textBox2.Clear();
+        //    textBox3.Clear();
+        //    textBox4.Clear();
+        //    checkBox1.IsEnabled = false;
+        //    checkBox2.IsEnabled = false;
+        //}
 
-        int pageSize = 5; // размер страницы
+        int pageSize = 3; // размер страницы
         int pageNumber = 0; // текущая страница
 
         private string GetSql()

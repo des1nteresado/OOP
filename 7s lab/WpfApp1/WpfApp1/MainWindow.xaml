@@ -27,16 +27,16 @@
         <CheckBox Name="checkBox2" Grid.Row="1" Content="DVD" HorizontalAlignment="Left" Margin="40,167,0,0" VerticalAlignment="Top"/>
         <DatePicker Name="dateTimePicker1" Grid.Row="1" HorizontalAlignment="Left" Margin="26,253,0,0" VerticalAlignment="Top" Width="173"/>
         <Label Grid.Row="1" Content="Дата поступления" HorizontalAlignment="Left" Margin="46,222,0,0" VerticalAlignment="Top"/>-->
-        <Menu Grid.Row="0" Background="Gray" FontSize="14" Grid.ColumnSpan="2" Margin="0,0,0.4,295.8" Grid.RowSpan="2"  >
-            <MenuItem Header="Сортировка">
+        <Menu Grid.Row="0" Background="Gray" FontSize="12" Grid.ColumnSpan="2" Margin="0,0,0.4,295.8" Grid.RowSpan="2"  >
+            <!--<MenuItem Header="Сортировка">
                 <MenuItem Header="по автору" Click="SortAuthorClick"/>
                 <MenuItem Header="по году издания" Click="SortYearClick"/>
-            </MenuItem>
+            </MenuItem>-->
             <MenuItem Header="О программе" Click="AbProg_Click"/>
         </Menu>
 
         <Button x:Name="deleteButton"  HorizontalAlignment="Left" VerticalAlignment="Top" Content="Удалить" Click="DeleteButton_Click" Width="75" Margin="169,48.2,0,0" Grid.Row="1" />
-        <Button x:Name="updateButton" Content="Обновить" Click="UpdateButton_Click" Width="75" Margin="513,34.2,107.2,214.8" Grid.Row="1" />
+        <Button x:Name="updateButton" Content="Обновить" Click="UpdateButton_Click" Margin="492,34.2,101.2,214.8" Grid.Row="1" />
         <Button Name="button4" Content="назад" HorizontalAlignment="Left" Margin="285,48.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button4_Click"/>
         <Button Name="button5" Content="вперед" HorizontalAlignment="Left" Margin="400,48.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button5_Click"/>
         <!--<Button Name="button6" Content="Чистка" HorizontalAlignment="Left" Margin="507,50.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button6_Click"/>-->
@@ -52,13 +52,13 @@
                 <DataGridTextColumn Binding="{Binding CD}" Header="CD" Width="50"/>
                 <DataGridTextColumn Binding="{Binding Pubhouse}" Header="Издательство" Width="100"/>
                 <DataGridTextColumn Binding="{Binding Date}" Header="Дата поступления" Width="120"/>
-                <DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
+                <!--<DataGridTemplateColumn Header="Image" Width="SizeToCells" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Image Source="{Binding Image}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
 
             </DataGrid.Columns>
         </DataGrid>
