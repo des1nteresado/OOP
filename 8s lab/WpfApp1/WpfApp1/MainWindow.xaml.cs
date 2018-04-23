@@ -23,7 +23,7 @@ namespace WpfApp1
 
             DataGrid1.ItemsSource = db.Items.Local.ToBindingList();
 
-            this.Closing += MainWindow_Closing;
+            Closing += MainWindow_Closing;
 
             //using (ChannelContext db = new ChannelContext())
             //{
